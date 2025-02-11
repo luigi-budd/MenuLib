@@ -1,6 +1,15 @@
 local ML = MenuLib
 
 addHook("PreThinkFrame", do
+	if ML.client.doMousePress
+		if ML.client.mouseTime == -1
+			ML.client.mouseTime = 0
+		else
+			ML.client.doMousePress = false
+			ML.client.mouseTime = -1
+		end
+	end
+	
 	if ML.client.currentMenu.id == -1
 		ML.client.currentMenu.layers = {}
 		return
@@ -12,14 +21,6 @@ addHook("PreThinkFrame", do
 	ML.client.mouse_x = ML.clamp(0, $, BASEVIDWIDTH*FU)
 	ML.client.mouse_y = ML.clamp(0, $, BASEVIDHEIGHT*FU)
 	
-	if ML.client.doMousePress
-		if ML.client.mouseTime == -1
-			ML.client.mouseTime = 0
-		else
-			ML.client.doMousePress = false
-			ML.client.mouseTime = -1
-		end
-	end
 end)
 
 addHook("KeyDown", function(key)
