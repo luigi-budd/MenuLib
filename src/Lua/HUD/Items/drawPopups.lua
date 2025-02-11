@@ -49,7 +49,7 @@ local function drawIt(v, ML, y_off)
 			height = 13,
 			
 			name = "x",
-			color = -1,
+			color = menu.color,
 			
 			pressFunc = function()
 				ML.initPopup(-1)
