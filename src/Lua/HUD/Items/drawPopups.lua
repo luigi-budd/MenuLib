@@ -33,6 +33,13 @@ local function drawIt(v, ML, y_off)
 			menu.outline
 		)
 	end
+	if (menu.color ~= -1)
+		v.drawFill(
+			corner_x, corner_y,
+			menu.width, menu.height,
+			menu.color
+		)
+	end
 	
 	do
 		ML.addButton(v, {
