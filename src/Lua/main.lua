@@ -10,10 +10,14 @@ addHook("PreThinkFrame", do
 		end
 	end
 	
+	ML.client.menuactive = false
 	if ML.client.currentMenu.id == -1
 		ML.client.currentMenu.layers = {}
+		ML.client.menuTime = 0
 		return
 	end
+	ML.client.menuactive = true
+	ML.client.menuTime = $ + 1
 	
 	ML.client.mouse_x = $ + mouse.dx * 3000
 	ML.client.mouse_y = $ + mouse.dy * 3000
@@ -26,6 +30,7 @@ end)
 addHook("KeyDown", function(key)
 	if isdedicatedserver then return end
 	if key.repeated then return end
+	if (ML.client.menuTime < 2) then return end
 	
 	if key.name == "mouse1"
 		ML.client.doMousePress = true
