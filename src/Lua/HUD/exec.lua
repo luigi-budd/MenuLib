@@ -22,6 +22,7 @@ do
 	local tree = {
 		--"drawButton",
 		"drawMenus",
+		"drawPopups",
 		"drawMouse",
 	}
 
@@ -46,6 +47,7 @@ end)
 
 addHook("HUD",function(v)
 	ML.client.hovering = -1
+	ML.HUD.stage_item = nil
 	
 	if ML.client.currentMenu.id == -1 then return end
 	
@@ -54,6 +56,7 @@ addHook("HUD",function(v)
 			ML.interpolate(v, true)
 		end
 		
+		ML.HUD.stage_item = item
 		item.func(v, ML)
 		
 		ML.interpolate(v, false)

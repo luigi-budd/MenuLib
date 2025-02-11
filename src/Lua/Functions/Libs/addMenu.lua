@@ -13,7 +13,11 @@ return function(props)
 		drawer = props.drawer,
 		thinker = props.thinker,
 		
-		stringId = props.stringId
+		stringId = props.stringId,
+		
+		--the rest are popup only
+		x = props.x or BASEVIDWIDTH/2,
+		y = props.y or BASEVIDHEIGHT/2,
 	})
 	
 	--every menu item NEEDS a stringId for indentification

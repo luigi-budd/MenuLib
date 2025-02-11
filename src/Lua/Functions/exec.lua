@@ -6,6 +6,7 @@ local tree = {
 	"addMenu",
 	"initMenu",
 	"findMenu",
+	"initPopup",
 }
 
 for k, name in ipairs(tree)

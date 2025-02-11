@@ -67,7 +67,7 @@ ML.addMenu({
 			},
 			
 			pressFunc = function()
-				print("Example 3!!!!!!!")
+				ML.initPopup(ML.findMenu("BoobPopup"))
 			end
 		})
 		

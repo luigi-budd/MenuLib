@@ -67,10 +67,12 @@ return function(v, props)
 		)
 	end
 	
-	v.drawFill(props.x, props.y,
-		props.width, props.height,
-		getSelectedAttrib(over, props, "color")
-	)
+	if getSelectedAttrib(over, props, "color") ~= -1
+		v.drawFill(props.x, props.y,
+			props.width, props.height,
+			getSelectedAttrib(over, props, "color")
+		)
+	end
 	
 	if (props.name)
 		v.drawString(
