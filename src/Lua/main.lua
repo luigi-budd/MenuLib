@@ -30,7 +30,11 @@ end)
 addHook("KeyDown", function(key)
 	if isdedicatedserver then return end
 	if key.repeated then return end
-	if (ML.client.menuTime < 2) then return end
+	if (ML.client.menuTime < 2)
+		ML.client.doMousePress = false
+		ML.client.mouseTime = -1
+		return
+	end
 	
 	if key.name == "mouse1"
 		ML.client.doMousePress = true
