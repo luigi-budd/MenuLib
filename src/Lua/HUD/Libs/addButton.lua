@@ -51,9 +51,12 @@ return function(v, props)
 			ML.client.hovering = props.id
 		end
 		
+		--pressed
 		if (ML.client.doMousePress)
-		and (props.pressFunc ~= nil)
-			props.pressFunc()
+			if (props.pressFunc ~= nil)
+				props.pressFunc()
+			end
+			S_StartSound(nil, sfx_menu1)
 		end
 	end
 	
