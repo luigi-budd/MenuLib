@@ -7,6 +7,8 @@ return function(props)
 		
 		width = props.width or 300,
 		height = props.height or 170,
+		color = props.color or 27,
+		outline = props.outline,
 		
 		drawer = props.drawer,
 		thinker = props.thinker,

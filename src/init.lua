@@ -28,7 +28,7 @@ MenuLib.client = {
 	--menu ID
 	currentMenu = {
 		id = -1,
-		prevId = -1,
+		layers = {}
 	},
 	
 	--use this when detecting mouse presses

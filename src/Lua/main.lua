@@ -2,6 +2,7 @@ local ML = MenuLib
 
 addHook("PreThinkFrame", do
 	if ML.client.currentMenu.id == -1
+		ML.client.currentMenu.layers = {}
 		return
 	end
 	
