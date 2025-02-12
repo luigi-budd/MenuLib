@@ -25,6 +25,7 @@ MenuLib.client = {
 	
 	--the button ID that we're hovering over
 	hovering = -1,
+	canPressSomething = false,
 	
 	--menu ID
 	currentMenu = {
@@ -44,6 +45,8 @@ local tree = {
 	
 	"Functions/exec",
 	"HUD/exec",
+
+	"debug",
 }
 
 for k,file in ipairs(tree)

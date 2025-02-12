@@ -47,6 +47,7 @@ end)
 
 addHook("HUD",function(v)
 	ML.client.hovering = -1
+	ML.client.canPressSomething = false
 	ML.HUD.stage_item = nil
 	
 	if ML.client.currentMenu.id == -1 then return end
