@@ -25,6 +25,18 @@ return function(id)
 	input.ignoregameinputs = true
 	local layers = ML.client.currentMenu.layers
 	
+	--immediately close
+	if id == -2
+		input.ignoregameinputs = false
+		
+		ML.client.mouse_x = (BASEVIDWIDTH*FU) / 2
+		ML.client.mouse_y = (BASEVIDHEIGHT*FU) / 2
+		ML.client.currentMenu.layers = {}
+		ML.client.currentMenu.id = -1
+		
+		return
+	end
+	
 	if id ~= -1
 		table.insert(ML.client.currentMenu.layers, ML.client.currentMenu.id)
 		
