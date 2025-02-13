@@ -67,8 +67,6 @@ local function drawIt(v, ML)
 				corner_y = corner_y,
 			})
 		end
-		--re-interp incase the drawer disabled it
-		MenuLib.interpolate(v, true)
 		
 		ML.interpolate(v, false)
 	end
