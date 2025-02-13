@@ -1,4 +1,4 @@
---MenuLib v0.0.2 written by luigi budd
+--MenuLib v0.0.3 written by luigi budd
 
 if rawget(_G,"MenuLib")
 	print("\x85MenuLib already loaded, aborting...")
@@ -11,7 +11,7 @@ rawset(_G, "BASEVIDWIDTH", BASEVIDWIDTH or 320)
 rawset(_G, "BASEVIDHEIGHT", BASEVIDHEIGHT or 200)
 
 MenuLib.VERSION = 000
-MenuLib.SUBVERSION = 2
+MenuLib.SUBVERSION = 3
 MenuLib.root = ""
 
 MenuLib.client = {
