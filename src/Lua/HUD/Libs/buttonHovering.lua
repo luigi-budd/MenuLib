@@ -3,9 +3,11 @@ local ML = MenuLib
 return function(v, props)
 	if ML.client.menuTime < 3 then return false; end
 	if (ML.client.currentMenu.id == -1) then return false; end
+	if (ML.client.menuLayer ~= ML.HUD.stage_id) then return false; end
 	
+	--shitty ik
 	if ML.HUD.stage_item.name == "drawMenus"
-	and (ML.client.popup_id ~= -1)
+	and (#ML.client.popups > 0)
 		return false
 	end
 	

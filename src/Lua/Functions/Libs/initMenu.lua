@@ -17,9 +17,13 @@ end
 
 return function(id)
 	if (isdedicatedserver) then return end
+	
+	--just opened
 	if ML.client.currentMenu.id == -1
 		ML.client.doMousePress = false
 		ML.client.mouseTime = -1
+		
+		ML.client.menuLayer = 1
 	end
 	
 	input.ignoregameinputs = true
@@ -33,6 +37,7 @@ return function(id)
 		ML.client.mouse_y = (BASEVIDHEIGHT*FU) / 2
 		ML.client.currentMenu.layers = {}
 		ML.client.currentMenu.id = -1
+		ML.client.menuLayer = 0
 		
 		return
 	end
@@ -42,13 +47,15 @@ return function(id)
 		
 	--go backwards
 	else
-		--there is NOT an available submenu before this one
+		--there is NOT an available submenu before this one, so exit
 		if canExitMenu(layers)
 			input.ignoregameinputs = false
 			
 			ML.client.mouse_x = (BASEVIDWIDTH*FU) / 2
 			ML.client.mouse_y = (BASEVIDHEIGHT*FU) / 2
 			ML.client.currentMenu.layers = {}
+			ML.client.menuLayer = 0
+			
 		else
 			id = layers[#layers]
 			layers[#layers] = nil

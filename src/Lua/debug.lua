@@ -104,6 +104,7 @@ ML.addMenu({
 	stringId = "BoobMenu2",
 	title = "Boob-SubMenu",
 	outline = 13,
+	width = 100,
 
 	drawer = function(v, ML, props)
 		local corner_x = props.corner_x + 10
@@ -152,6 +153,69 @@ ML.addMenu({
 	drawer = function(v, ML, props)
 		local x,y = props.corner_x, props.corner_y
 		v.drawString(x + 2, y + 2, "Popup", V_ALLOWLOWERCASE, "thin")
+		
+		ML.addButton(v, {
+			x = x + 2,
+			y = y + 15,
+			name = "popup 2",
+			width = 50,
+			height = 15,
+			color = 5,
+			
+			pressFunc = function()
+				ML.initPopup(ML.findMenu("BoobPopup2"))
+			end
+		})
+	end
+})
+
+ML.addMenu({
+	stringId = "BoobPopup2",
+	title = "Another Popup!",
+	
+	x = 160,
+	y = 50,
+	width = 140,
+	height = 32,
+	
+	color = 43,
+	outline = 47,
+	
+	drawer = function(v, ML, props)
+		local x,y = props.corner_x, props.corner_y
+		v.drawString(x + 2, y + 2, "Another Popup!", V_ALLOWLOWERCASE, "thin")
+		
+		ML.addButton(v, {
+			x = x + 2,
+			y = y + 15,
+			name = "popup 3",
+			width = 50,
+			height = 15,
+			color = 5,
+			
+			pressFunc = function()
+				ML.initPopup(ML.findMenu("BoobPopup3"))
+			end
+		})
+	end
+})
+
+ML.addMenu({
+	stringId = "BoobPopup3",
+	title = "Another Popup!",
+	
+	x = 0,
+	y = 0,
+	width = 320,
+	height = 200,
+	
+	color = 107,
+	outline = 111,
+	
+	drawer = function(v, ML, props)
+		local x,y = props.corner_x, props.corner_y
+		v.drawString(x + 2, y + 2, "Big Popup", V_ALLOWLOWERCASE, "thin")
+		
 	end
 })
 
@@ -160,6 +224,10 @@ addHook("KeyDown", function(key)
 	if key.repeated then return end
 	
 	if key.name == "f"
-		ML.initMenu(1)
+		if (#ML.client.popups)
+			ML.initPopup(-1)
+		else
+			ML.initMenu(1)
+		end
 	end
 end)

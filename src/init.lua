@@ -32,7 +32,8 @@ MenuLib.client = {
 		id = -1,
 		layers = {}
 	},
-	popup_id = -1,
+	popups = {},
+	menuLayer = 0,
 	
 	--use this when detecting mouse presses
 	doMousePress = false,
