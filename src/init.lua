@@ -19,7 +19,6 @@ local function enumflags(prefix, ...)
 		
 		rawset(_G,prefix..enum,val)
 		print("Enummed "..prefix..""..enum.." ("..val..")")
-		table.insert(constlist,{prefix..""..enum,val})
 	end
 end
 
