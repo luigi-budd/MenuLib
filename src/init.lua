@@ -1,4 +1,4 @@
---MenuLib v0.0.3 written by luigi budd
+--MenuLib v0.0.4 written by luigi budd
 
 if rawget(_G,"MenuLib")
 	print("\x85MenuLib already loaded, aborting...")
@@ -41,7 +41,7 @@ enumflags("PS_",
 )
 
 MenuLib.VERSION = 000
-MenuLib.SUBVERSION = 3
+MenuLib.SUBVERSION = 4
 --dont forget the ending "/"
 MenuLib.root = ""
 
