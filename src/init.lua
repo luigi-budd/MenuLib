@@ -38,7 +38,7 @@ enumflags("PS_",
 	"IRRELEVANT",
 	
 	--this popup will not slide in from the bottom
-	"NOSLIDEIN",
+	"NOSLIDEIN"
 )
 
 MenuLib.VERSION = 000
