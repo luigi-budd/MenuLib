@@ -4,7 +4,7 @@ ML.addMenu({
 	stringId = "BoobMenu",
 	title = "Booooooob",
 	
-	drawer = function(v, ML, props)
+	drawer = function(v, ML, menu, props)
 		local corner_x = props.corner_x + 10
 		local corner_y = props.corner_y + 18
 		
@@ -106,7 +106,7 @@ ML.addMenu({
 	outline = 13,
 	width = 100,
 
-	drawer = function(v, ML, props)
+	drawer = function(v, ML, menu, props)
 		local corner_x = props.corner_x + 10
 		local corner_y = props.corner_y + 18
 		
@@ -150,7 +150,7 @@ ML.addMenu({
 	color = 155,
 	outline = 159,
 	
-	drawer = function(v, ML, props)
+	drawer = function(v, ML, menu, props)
 		local x,y = props.corner_x, props.corner_y
 		v.drawString(x + 2, y + 2, "Popup", V_ALLOWLOWERCASE, "thin")
 		
@@ -181,7 +181,7 @@ ML.addMenu({
 	color = 43,
 	outline = 47,
 	
-	drawer = function(v, ML, props)
+	drawer = function(v, ML, menu, props)
 		local x,y = props.corner_x, props.corner_y
 		v.drawString(x + 2, y + 2, "Another Popup!", V_ALLOWLOWERCASE, "thin")
 		
@@ -212,7 +212,7 @@ ML.addMenu({
 	color = 107,
 	outline = 111,
 	
-	drawer = function(v, ML, props)
+	drawer = function(v, ML, menu, props)
 		local x,y = props.corner_x, props.corner_y
 		v.drawString(x + 2, y + 2, "Big Popup", V_ALLOWLOWERCASE, "thin")
 		

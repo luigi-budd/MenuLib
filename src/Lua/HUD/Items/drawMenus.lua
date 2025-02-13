@@ -63,7 +63,7 @@ return function(v,ML)
 	)
 	
 	if (menu.drawer ~= nil)
-		menu.drawer(v, ML, {
+		menu.drawer(v, ML, menu, {
 			corner_x = corner_x,
 			corner_y = corner_y,
 		})

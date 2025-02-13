@@ -29,7 +29,7 @@ return function(props)
 	
 	--every menu item NEEDS a stringId for indentification
 	if props.stringId == nil
-		error("MenuItem missing props.stringId", 2)
+		error("MenuItem missing properties.stringId", 2)
 	end
 	
 	return #ML.menus
