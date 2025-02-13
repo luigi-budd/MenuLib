@@ -12,6 +12,7 @@ rawset(_G, "BASEVIDHEIGHT", BASEVIDHEIGHT or 200)
 
 MenuLib.VERSION = 000
 MenuLib.SUBVERSION = 3
+--dont forget the ending "/"
 MenuLib.root = ""
 
 MenuLib.client = {
