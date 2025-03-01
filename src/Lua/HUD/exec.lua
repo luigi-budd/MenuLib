@@ -9,6 +9,7 @@ do
 	local tree = {
 		"addButton",
 		"buttonHovering",
+		"inDraggableZone",
 	}
 
 	for k, name in ipairs(tree)

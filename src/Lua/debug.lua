@@ -166,6 +166,19 @@ ML.addMenu({
 				ML.initPopup(ML.findMenu("BoobPopup2"))
 			end
 		})
+		
+		ML.addButton(v, {
+			x = x + 2,
+			y = y + 32,
+			name = "draggable",
+			width = 50,
+			height = 15,
+			color = 5,
+			
+			pressFunc = function()
+				ML.initPopup(ML.findMenu("BoobPopup4"))
+			end
+		})
 	end
 })
 
@@ -215,7 +228,25 @@ ML.addMenu({
 	drawer = function(v, ML, menu, props)
 		local x,y = props.corner_x, props.corner_y
 		v.drawString(x + 2, y + 2, "Big Popup", V_ALLOWLOWERCASE, "thin")
-		
+	end
+})
+
+ML.addMenu({
+	stringId = "BoobPopup4",
+	title = "Draggable",
+	
+	x = 10,
+	y = 50,
+	width = 100,
+	height = 100,
+	
+	color = 155,
+	outline = 159,
+	
+	ps_flags = PS_DRAGGABLE|PS_DRAWTITLE,
+	
+	drawer = function(v, ML, menu, props)
+		local x,y = props.corner_x, props.corner_y
 	end
 })
 

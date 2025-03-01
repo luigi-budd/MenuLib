@@ -1,6 +1,7 @@
 local ML = MenuLib
 
 addHook("PreThinkFrame", do
+	print(leveltime.." prethink")
 	if ML.client.doMousePress
 		if ML.client.mouseTime == -1
 			ML.client.mouseTime = 0
@@ -8,6 +9,10 @@ addHook("PreThinkFrame", do
 			ML.client.doMousePress = false
 			ML.client.mouseTime = -1
 		end
+	end
+	
+	if (ML.client.mouseDown)
+		ML.client.lastMouseDownTic = ML.client.mouseDownTic
 	end
 	
 	ML.client.menuactive = false
@@ -24,12 +29,12 @@ addHook("PreThinkFrame", do
 	
 	ML.client.mouse_x = ML.clamp(0, $, BASEVIDWIDTH*FU)
 	ML.client.mouse_y = ML.clamp(0, $, BASEVIDHEIGHT*FU)
-	
 end)
 
+--keydown runs before prethink
 addHook("KeyDown", function(key)
+	print(leveltime.." KeyDown")
 	if isdedicatedserver then return end
-	if key.repeated then return end
 	if (ML.client.menuTime < 2)
 		ML.client.doMousePress = false
 		ML.client.mouseTime = -1
@@ -37,6 +42,10 @@ addHook("KeyDown", function(key)
 	end
 	
 	if key.name == "mouse1"
-		ML.client.doMousePress = true
+		if not key.repeated
+			ML.client.doMousePress = true
+		end
+		ML.client.mouseDown = true
+		ML.client.mouseDownTic = $ + 1
 	end
 end)

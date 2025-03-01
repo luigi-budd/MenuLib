@@ -27,7 +27,7 @@ enumflags("PS_",
 	--this popup will automatically draw the title and separating line
 	"DRAWTITLE",
 	
-	--this popup wont have an "X" button, youd better have it close itself!
+	--this popup wont have an "X" button, youd better have a way to close it!
 	"NOXBUTTON",
 	
 	--this popup wont fade the other menus behind it
@@ -37,7 +37,10 @@ enumflags("PS_",
 	"IRRELEVANT",
 	
 	--this popup will not slide in from the bottom
-	"NOSLIDEIN"
+	"NOSLIDEIN",
+	
+	--you can drag this popup
+	"DRAGGABLE"
 )
 
 MenuLib.VERSION = 000
@@ -66,8 +69,9 @@ MenuLib.client = {
 	popups = {},
 	menuLayer = 0,
 	
-	--use this when detecting mouse presses
+	--use this when detecting one time mouse presses
 	doMousePress = false,
+	mouseDown = false,
 	mouseTime = -1,
 }
 
