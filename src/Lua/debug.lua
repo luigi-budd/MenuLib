@@ -180,6 +180,7 @@ ML.addMenu({
 	
 	color = 43,
 	outline = 47,
+	ps_flags = PS_NOESCAPE,
 	
 	drawer = function(v, ML, menu, props)
 		local x,y = props.corner_x, props.corner_y
