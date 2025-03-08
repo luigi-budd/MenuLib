@@ -46,6 +46,12 @@ return function(id)
 		ML.client.currentMenu.id = -1
 		ML.client.menuLayer = 0
 		
+		--close all popups too
+		for k,_ in ipairs(ML.client.popups)
+			ML.initPopup(-1, true)
+			continue
+		end
+		
 		return
 	end
 	
