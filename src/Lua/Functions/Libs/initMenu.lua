@@ -31,9 +31,10 @@ return function(id)
 	
 	--immediately close ALL menus
 	if id == -2
-		for i = 1, #layers
+		for i = #layers, 1, -1
 			local this_menu = ML.menus[layers[i]]
-			if (this_menu.exit ~= nil)
+			if this_menu ~= nil
+			and (this_menu.exit ~= nil)
 				this_menu.exit(CR_MENUEXITED|CR_FORCEDCLOSEALL)
 			end
 		end

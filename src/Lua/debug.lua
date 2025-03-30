@@ -136,6 +136,31 @@ ML.addMenu({
 	stringId = "BoobMenu3",
 	title = "Boob-SubMenu-2",
 	outline = 13,
+	drawer = function(v, ML, menu, props)
+		local corner_x = props.corner_x + 10
+		local corner_y = props.corner_y + 18
+		
+		ML.addButton(v, {
+			id = 1,
+			
+			x = corner_x,
+			y = corner_y,
+			
+			width = 80,
+			height = 50,
+			
+			name = "Close all",
+			color = 5,
+			
+			selected = {
+				color = 83
+			},
+			
+			pressFunc = function()
+				ML.initMenu(-2)
+			end
+		})
+	end
 })
 
 ML.addMenu({
