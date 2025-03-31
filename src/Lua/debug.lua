@@ -1,4 +1,9 @@
 local ML = MenuLib
+local buffer = ""
+local bufferid = ML.newBufferID()
+
+local com_buffer = ""
+local com_bufferid = ML.newBufferID()
 
 ML.addMenu({
 	stringId = "BoobMenu",
@@ -7,6 +12,12 @@ ML.addMenu({
 	drawer = function(v, ML, menu, props)
 		local corner_x = props.corner_x + 10
 		local corner_y = props.corner_y + 18
+		
+		v.draw(corner_x + 2,
+			corner_y + 22,
+			v.cachePatch("HOLYMOLY"),
+			0
+		)
 		
 		ML.addButton(v, {
 			id = 1,
@@ -17,7 +28,7 @@ ML.addMenu({
 			width = 68,
 			height = 20,
 			
-			name = "Example",
+			name = "Text input",
 			color = 5,
 			
 			selected = {
@@ -25,9 +36,17 @@ ML.addMenu({
 			},
 			
 			pressFunc = function()
-				print("Example 1!!!!!!!")
+				print("Text input started")
+				ML.startTextInput(buffer, bufferid,nil,function()
+					buffer = ML.client.textbuffer
+				end)
 			end
 		})
+		v.drawString(corner_x,corner_y + menu.height/2,
+			"buffer: "..buffer,
+			V_ALLOWLOWERCASE,
+			"thin"
+		)
 		
 		ML.addButton(v, {
 			id = 2,
@@ -38,7 +57,7 @@ ML.addMenu({
 			width = 68,
 			height = 20,
 			
-			name = "Example2",
+			name = "Command",
 			color = 6,
 			
 			selected = {
@@ -46,7 +65,10 @@ ML.addMenu({
 			},
 			
 			pressFunc = function()
-				print("Example 2!!!!!!!")
+				ML.startTextInput(com_buffer, com_bufferid,nil,function()
+					ML.client.commandbuffer = ML.client.textbuffer
+					com_buffer = ""
+				end)
 			end
 		})
 		
@@ -59,7 +81,7 @@ ML.addMenu({
 			width = 68,
 			height = 20,
 			
-			name = "Example3",
+			name = "Popup",
 			color = 7,
 			
 			selected = {
@@ -80,7 +102,7 @@ ML.addMenu({
 			width = 68,
 			height = 20,
 			
-			name = "Example4",
+			name = "Popup",
 			color = 8,
 			
 			selected = {
@@ -91,12 +113,6 @@ ML.addMenu({
 				ML.initMenu(ML.findMenu("BoobMenu2"))
 			end
 		})
-		
-		v.draw(corner_x + 2,
-			corner_y + 22,
-			v.cachePatch("HOLYMOLY"),
-			0
-		)
 	end,
 })
 
