@@ -68,7 +68,7 @@ ML.addMenu({
 				ML.startTextInput(com_buffer, com_bufferid,nil,function()
 					ML.client.commandbuffer = ML.client.textbuffer
 					com_buffer = ""
-				end)
+				end, "Type a command...")
 			end
 		})
 		
