@@ -49,6 +49,15 @@ enumflags("PS_", {
 	"NOESCAPE",
 }, "flags")
 
+--Menu-Style flags
+enumflags("MS_", {
+	--the menu will not draw the separating line
+	"NOLINE",
+	
+	--this menu will not do the expanding animation
+	"NOANIM",
+}, "flags")
+
 --Close-Reason enums
 enumflags("CR_", {
     --we're going back in the menu layers

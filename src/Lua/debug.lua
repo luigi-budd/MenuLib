@@ -37,9 +37,15 @@ ML.addMenu({
 			
 			pressFunc = function()
 				print("Text input started")
-				ML.startTextInput(buffer, bufferid,nil,function()
-					buffer = ML.client.textbuffer
-				end)
+				ML.startTextInput(buffer, bufferid, {
+					onenter = function()
+						buffer = ML.client.textbuffer
+					end,
+					tooltip = {
+						"Type whatever.",
+						"Multi-line tooltip test"
+					}
+				})
 			end
 		})
 		v.drawString(corner_x,corner_y + menu.height/2,
@@ -65,10 +71,13 @@ ML.addMenu({
 			},
 			
 			pressFunc = function()
-				ML.startTextInput(com_buffer, com_bufferid,nil,function()
-					ML.client.commandbuffer = ML.client.textbuffer
-					com_buffer = ""
-				end, "Type a command...")
+				ML.startTextInput(com_buffer, com_bufferid, {
+					onenter = function()
+						ML.client.commandbuffer = ML.client.textbuffer
+						com_buffer = ""
+					end,
+					tooltip = "Type a command..."
+				})
 			end
 		})
 		
