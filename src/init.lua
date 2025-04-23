@@ -1,5 +1,6 @@
 --MenuLib v0.6 written by luigi budd
 
+--TODO: check for versions and replace functions?
 if rawget(_G,"MenuLib")
 	print("\x85MenuLib already loaded, aborting...")
 	return
@@ -18,7 +19,7 @@ local function enumflags(prefix, work, flagstyle)
         elseif flagstyle == "enum"
             val = k
         end
-
+		
 		assert(val ~= -1,"\x85Ran out of bits for "..prefix.."! (k="..k..")\x80")
 		assert(val ~= nil,"\x85".."Didn\'t give flagstyle in enumflags\x80")
 		
