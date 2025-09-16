@@ -2,7 +2,7 @@
 
 --TODO: check for versions and replace functions?
 if rawget(_G,"MenuLib")
-	print("\x85MenuLib already loaded, aborting...")
+	print("\x82MenuLib already loaded, aborting...")
 	return
 end
 
@@ -84,6 +84,8 @@ MenuLib.SUBVERSION = 0
 --dont forget the ending "/" (and "debug" from the file tree below!)
 MenuLib.root = MENULIB_ROOT or ""
 
+MenuLib.templates = {}
+
 MenuLib.client = {
 	
 	--Self explanatory
@@ -108,6 +110,7 @@ MenuLib.client = {
 	--use this when detecting mouse presses
 	doMousePress = false,
 	mouseTime = -1,
+	mouseHeld = 0, -- 1 = JUST pressed down, 2 = held, -1 = let go, 0 = none
 	
 	--text input stuff (messy)
 	textbuffer = nil,

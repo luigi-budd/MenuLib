@@ -3,6 +3,7 @@ local keyname2sym = {
 	["KEY123"] = "{",
 	["KEY124"] = "|",
 	["KEY125"] = "}",
+	["KEY126"] = "`",
 	["TILDE"] = "~"
 }
 
@@ -16,9 +17,9 @@ return function(key, buffer, callback)
 		local letter = input.keyNumToName(key.num)
 		if ML.client.text_shiftdown
 			letter = input.keyNumToName( input.shiftKeyNum(key.num) )
-			if keyname2sym[letter] ~= nil
-				letter = keyname2sym[letter]
-			end
+		end
+		if keyname2sym[letter] ~= nil
+			letter = keyname2sym[letter]
 		end
 		
 		buffer = $ .. letter

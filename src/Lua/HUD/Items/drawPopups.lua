@@ -100,6 +100,7 @@ local function drawIt(v, ML)
 		end
 		
 		if (menu.drawer ~= nil)
+			ML.interpolate(false)
 			menu.drawer(v, ML, menu, {
 				corner_x = corner_x,
 				corner_y = corner_y,

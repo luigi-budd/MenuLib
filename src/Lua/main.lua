@@ -1,4 +1,5 @@
 local ML = MenuLib
+local waittoupdate = false --for mouse
 
 addHook("PreThinkFrame", do
 	if ML.client.doMousePress
@@ -9,6 +10,14 @@ addHook("PreThinkFrame", do
 			ML.client.mouseTime = -1
 		end
 	end
+	if not waittoupdate
+		if ML.client.mouseHeld == 1
+			ML.client.mouseHeld = 2
+		elseif ML.client.mouseHeld == -1
+			ML.client.mouseHeld = 0
+		end
+	end
+	waittoupdate = false
 	
 	ML.client.menuactive = false
 	if ML.client.currentMenu.id == -1
@@ -31,6 +40,7 @@ addHook("PreThinkFrame", do
 	end
 end)
 
+--keyhandler object stuff
 addHook("KeyDown", function(key)
 	if isdedicatedserver then return end
 	
@@ -62,6 +72,12 @@ addHook("KeyUp", function(key)
 	or key.name == "rshift"
 		ML.client.text_shiftdown = false
 	end
+	
+	--lul
+	if key.name == "mouse1"
+		ML.client.mouseHeld = -1
+		waittoupdate = true
+	end
 end)
 
 addHook("KeyDown", function(key)
@@ -77,6 +93,8 @@ addHook("KeyDown", function(key)
 	if key.name == "mouse1"
 	and (ML.client.textbuffer_id == nil)
 		ML.client.doMousePress = true
+		ML.client.mouseHeld = 1
+		waittoupdate = true
 	elseif key.name == "escape"
 	and not chatactive
 		if (ML.client.textbuffer_id == nil)

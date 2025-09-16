@@ -8,6 +8,7 @@ do
 	local path = ML.root .. "HUD/Libs/"
 	local tree = {
 		"addButton",
+		"mouseInZone",
 		"buttonHovering",
 	}
 

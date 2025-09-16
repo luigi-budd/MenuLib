@@ -15,6 +15,22 @@ local function getSelectedAttrib(over, prop, attrib, index)
 	return new_attrib
 end
 
+/*
+from menulib v2 prototype:
+function MenuLib:addMenu(props)
+  assert(props ~= nil and type(props) == "table", "MenuLib:addMenu() <- requires input of type \"table\"")
+  assert(props.name ~= nil, "MenuLib:addMenu(table) <- table must have \"name\" field")
+  assert(self:findMenu(props.name) == nil, "MenuLib:addMenu(table) <- \"name\" field must be unique (dupe of \""..props.name.."\")")
+  
+  setmetatable(props, {__index = self.protos.menu})
+  self.menus[self.menu_incre] = props
+  self.menu_incre = self.menu_incre + 1
+  return props
+end
+
+maybe `selected` could use a metatable instead?
+*/
+
 return function(v, props)
 	--highlight
 	local over = false
@@ -64,7 +80,8 @@ return function(v, props)
 		end
 	end
 	
-	if (props.outline)
+	if (props.outline ~= nil)
+	and (props.outline ~= -1)
 		v.drawFill(props.x - 1, props.y - 1,
 			props.width + 2, props.height + 2,
 			getSelectedAttrib(over, props, "outline")
@@ -78,14 +95,21 @@ return function(v, props)
 		)
 	end
 	
-	if (props.name)
-		v.drawString(
-			props.x + (props.width/2),
-			props.y + (props.height/2) - 4,
-			props.name,
-			getSelectedAttrib(over, props, "nameStyles", "flags") or V_ALLOWLOWERCASE,
-			getSelectedAttrib(over, props, "nameStyles", "align") or "thin-center"
-		)
+	if (props.name ~= nil)
+		if type(props.name) == "string"
+			v.drawString(
+				props.x + (props.width/2),
+				props.y + (props.height/2) - 4,
+				props.name,
+				getSelectedAttrib(over, props, "nameStyles", "flags") or V_ALLOWLOWERCASE,
+				getSelectedAttrib(over, props, "nameStyles", "align") or "thin-center"
+			)
+		elseif type(props.name) == "function"
+			props.name(v,
+				props, props.x, props.y
+			)
+			ML.interpolate(v,false)
+		end
 	end
 	
 end
