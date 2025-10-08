@@ -35,6 +35,10 @@ return function(v, props)
 	--highlight
 	local over = false
 	
+	if props.interptag ~= nil
+		ML.interpolate(v, props.interptag)
+	end
+	
 	if ML.buttonHovering(v,props)
 	and (props.pressFunc ~= nil)
 		local this = {
@@ -80,8 +84,8 @@ return function(v, props)
 		end
 	end
 	
-	if (props.outline ~= nil)
-	and (props.outline ~= -1)
+	if (getSelectedAttrib(over, props, "outline") ~= nil)
+	and (getSelectedAttrib(over, props, "outline") ~= -1)
 		v.drawFill(props.x - 1, props.y - 1,
 			props.width + 2, props.height + 2,
 			getSelectedAttrib(over, props, "outline")
@@ -109,6 +113,7 @@ return function(v, props)
 				props, props.x, props.y
 			)
 			ML.interpolate(v,false)
+		--elseif type(props.name) == "table"
 		end
 	end
 	props.highlighted = over

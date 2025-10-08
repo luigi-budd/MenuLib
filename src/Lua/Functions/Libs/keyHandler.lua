@@ -15,7 +15,7 @@ return function(key, buffer, callback)
 		keydown = true
 	elseif input.keyNumPrintable(key.num)
 		local letter = input.keyNumToName(key.num)
-		if ML.client.text_shiftdown
+		if ML.client.text_shiftdown or ML.client.text_capslock
 			letter = input.keyNumToName( input.shiftKeyNum(key.num) )
 		end
 		if keyname2sym[letter] ~= nil

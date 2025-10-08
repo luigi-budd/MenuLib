@@ -54,6 +54,11 @@ addHook("KeyDown", function(key)
 		ML.client.text_shiftdown = true
 	end
 	
+	if key.name == "caps lock"
+	and not key.repeated
+		ML.client.text_capslock = not $
+	end
+	
 	if ML.client.textbuffer ~= nil
 		local keydown = false
 		ML.client.textbuffer,keydown = ML.keyHandler(key, ML.client.textbuffer)

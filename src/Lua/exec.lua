@@ -118,6 +118,7 @@ MenuLib.client = {
 	textbuffer_funcs = {},
 	text_shiftdown = false,
 	text_ctrldown = false,
+	text_capslock = false,
 	textbuffer_sfx = nil,
 	textbuffer_tooltip = nil,
 	
