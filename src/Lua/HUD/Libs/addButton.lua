@@ -111,5 +111,7 @@ return function(v, props)
 			ML.interpolate(v,false)
 		end
 	end
+	props.highlighted = over
 	
+	return props
 end
