@@ -8,6 +8,12 @@ local function getSelectedAttrib(over, prop, attrib, index)
 	else
 		new_attrib = prop[attrib]
 	end
+	/*
+	if new_attrib == nil
+	and prop.template ~= nil
+		new_attrib = prop.template[attrib]
+	end
+	*/
 	
 	if type(new_attrib) == "table"
 		return new_attrib[index]
@@ -29,6 +35,9 @@ function MenuLib:addMenu(props)
 end
 
 maybe `selected` could use a metatable instead?
+the one reason why butons dont use metatables right now is that since these are all added
+in the menu's drawer, theyre constantly executed every tic, setting a metatable could
+possibly add even more overhead than necessary
 */
 
 return function(v, props)
@@ -37,6 +46,10 @@ return function(v, props)
 	
 	if props.interptag ~= nil
 		ML.interpolate(v, props.interptag)
+	end
+	setmetatable(props, {__index = props.template})
+	if props.seletected ~= nil
+		setmetatable(props.seletected, {__index = props})
 	end
 	
 	if ML.buttonHovering(v,props)

@@ -35,18 +35,16 @@ ML.templates.menu = {
 	ms_flags = 0,
 }
 
-local function getAttrib(props, attrib, default)
-	if (props[attrib] == nil)
-		return default
-	end
-	return props[attrib]
-end
-
 return function(props)
 	assert(props ~= nil and type(props) == "table", "MenuLib.addMenu() <- requires input of type \"table\"")
 	assert(props.stringId ~= nil, "MenuLib.addMenu(table) <- table must have \"stringId\" field")
 	assert(ML.findMenu(props.stringId) == -1, "MenuLib.addMenu(table) <- \"stringId\" field must be unique (dupe of \""..props.stringId.."\")")
 	
+	if props.template ~= nil
+		for k,v in pairs(props.template)
+			props[k] = v
+		end
+	end
 	setmetatable(props, {__index = ML.templates.menu})
 	table.insert(ML.menus, props)
 	return #ML.menus, props

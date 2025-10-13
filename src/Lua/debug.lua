@@ -15,9 +15,26 @@ ML.addMenu({
 		
 		v.draw(corner_x + 2,
 			corner_y + 22,
-			v.cachePatch("HOLYMOLY"),
+			v.cachePatch("MISSING"),
 			0
 		)
+		
+		ML.addButton(v, {
+			id = 1,
+			
+			y = corner_y + 52,
+			
+			width = 68,
+			height = 20,
+			
+			name = "Template",
+			color = 5,
+			
+			selected = {
+				color = 83
+			},
+			template = {x = corner_x},
+		})
 		
 		ML.addButton(v, {
 			id = 1,
