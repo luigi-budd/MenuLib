@@ -1,5 +1,6 @@
 local ML = MenuLib
 local waittoupdate = false --for mouse
+local waittoupdate_esc = false
 
 addHook("PreThinkFrame", do
 	if ML.client.doMousePress
@@ -19,6 +20,23 @@ addHook("PreThinkFrame", do
 	end
 	waittoupdate = false
 	
+	if ML.client.doEscapePress
+		if ML.client.escapeTime == -1
+			ML.client.escapeTime = 0
+		else
+			ML.client.doEscapePress = false
+			ML.client.escapeTime = -1
+		end
+	end
+	if not waittoupdate_esc
+		if ML.client.escapeHeld == 1
+			ML.client.escapeHeld = 2
+		elseif ML.client.escapeHeld == -1
+			ML.client.escapeHeld = 0
+		end
+	end
+	waittoupdate_esc = false
+
 	ML.client.menuactive = false
 	if ML.client.currentMenu.id == -1
 		ML.client.currentMenu.layers = {}
@@ -83,6 +101,11 @@ addHook("KeyUp", function(key)
 		ML.client.mouseHeld = -1
 		waittoupdate = true
 	end
+
+	if key.name == "escape"
+		ML.client.escapeHeld = -1
+		waittoupdate_esc = true
+	end
 end)
 
 addHook("KeyDown", function(key)
@@ -110,7 +133,11 @@ addHook("KeyDown", function(key)
 					ML.initPopup(-1)
 				end
 			else
-				ML.initMenu(-1)
+				if ML.menus[ML.client.currentMenu.id].ms_flags & MF_NOESCAPE
+					-- do nothing
+				else
+					ML.initMenu(-1)
+				end
 			end
 		else
 			if ML.client.textbuffer_funcs.close ~= nil
@@ -120,6 +147,9 @@ addHook("KeyDown", function(key)
 			end
 			ML.stopTextInput()
 		end
+		ML.client.doEscapePress = true
+		ML.client.escapeheld = 1
+		waittoupdate_esc = true
 		return true
 	elseif key.name == "enter"
 	and not chatactive

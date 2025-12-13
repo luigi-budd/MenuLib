@@ -35,7 +35,7 @@ return function(id)
 			local this_menu = ML.menus[layers[i]]
 			if this_menu ~= nil
 			and (this_menu.exit ~= nil)
-				this_menu.exit(CR_MENUEXITED|CR_FORCEDCLOSEALL)
+				this_menu.exit(CR_MENUEXITED|CR_FORCEDCLOSEALL, this_menu)
 			end
 		end
 		

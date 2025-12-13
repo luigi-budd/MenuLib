@@ -39,13 +39,12 @@ enumflags("PS_", {
 	--this popup wont fade the other menus behind it
 	"NOFADE",
 	
-	--this popup is purely visual, and will not be interactable
+	--this popup is purely visual, and will not be interactable / make layers below it uninteractable
 	"IRRELEVANT",
 	
 	--this popup will not slide in from the bottom
 	"NOSLIDEIN",
 	
-	--HOLY SHIT
 	--this popup cannot be closed with the escape key
 	"NOESCAPE",
 }, "flags")
@@ -57,6 +56,9 @@ enumflags("MS_", {
 	
 	--this menu will not do the expanding animation
 	"NOANIM",
+
+	--this menu cannot be closed with the escape key
+	"NOESCAPE",
 }, "flags")
 
 --Close-Reason enums
@@ -113,6 +115,10 @@ MenuLib.client = {
 	mouseTime = -1,
 	mouseHeld = 0, -- 1 = JUST pressed down, 2 = held, -1 = let go, 0 = none
 	
+	doEscapePress = false,
+	escapeTime = -1,
+	escapeHeld = 0, -- 1 = JUST pressed down, 2 = held, -1 = let go, 0 = none
+
 	--text input stuff (messy)
 	textbuffer = nil,
 	textbuffer_id = nil,
