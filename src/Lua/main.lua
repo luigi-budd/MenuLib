@@ -148,7 +148,7 @@ addHook("KeyDown", function(key)
 			ML.stopTextInput()
 		end
 		ML.client.doEscapePress = true
-		ML.client.escapeheld = 1
+		ML.client.escapeHeld = 1
 		waittoupdate_esc = true
 		return true
 	elseif key.name == "enter"
