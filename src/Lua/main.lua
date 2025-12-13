@@ -133,7 +133,7 @@ addHook("KeyDown", function(key)
 					ML.initPopup(-1)
 				end
 			else
-				if ML.menus[ML.client.currentMenu.id].ms_flags & MF_NOESCAPE
+				if ML.menus[ML.client.currentMenu.id].ms_flags & MS_NOESCAPE
 					-- do nothing
 				else
 					ML.initMenu(-1)
