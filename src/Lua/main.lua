@@ -2,7 +2,7 @@ local ML = MenuLib
 local waittoupdate = false --for mouse
 local waittoupdate_esc = false
 
-addHook("PreThinkFrame", do
+ML.mainThinker = function()
 	if ML.client.doMousePress
 		if ML.client.mouseTime == -1
 			ML.client.mouseTime = 0
@@ -37,8 +37,13 @@ addHook("PreThinkFrame", do
 	end
 	waittoupdate_esc = false
 
+	if ML.client.commandbuffer ~= nil
+		COM_BufInsertText(consoleplayer,ML.client.commandbuffer)
+		ML.client.commandbuffer = nil
+	end
+	
 	ML.client.menuactive = false
-	if ML.client.currentMenu.id == -1
+	if ML.noMenuOpenAtAll()
 		ML.client.currentMenu.layers = {}
 		ML.client.menuTime = 0
 		return
@@ -51,15 +56,10 @@ addHook("PreThinkFrame", do
 	
 	ML.client.mouse_x = ML.clamp(0, $, BASEVIDWIDTH*FU)
 	ML.client.mouse_y = ML.clamp(0, $, BASEVIDHEIGHT*FU)
-	
-	if ML.client.commandbuffer ~= nil
-		COM_BufInsertText(consoleplayer,ML.client.commandbuffer)
-		ML.client.commandbuffer = nil
-	end
-end)
+end
 
 --keyhandler object stuff
-addHook("KeyDown", function(key)
+ML.keyhandlerThinker_KD = function(key)
 	if isdedicatedserver then return end
 	
 	if key.name == "lctrl"
@@ -82,8 +82,8 @@ addHook("KeyDown", function(key)
 		ML.client.textbuffer,keydown = ML.keyHandler(key, ML.client.textbuffer)
 		if keydown then return true; end
 	end
-end)
-addHook("KeyUp", function(key)
+end
+ML.keyhandlerThinker_KU = function(key)
 	if isdedicatedserver then return end
 	
 	if key.name == "lctrl"
@@ -106,9 +106,9 @@ addHook("KeyUp", function(key)
 		ML.client.escapeHeld = -1
 		waittoupdate_esc = true
 	end
-end)
+end
 
-addHook("KeyDown", function(key)
+ML.controlHandler = function(key)
 	if isdedicatedserver then return end
 	if key.repeated then return end
 	
@@ -160,4 +160,22 @@ addHook("KeyDown", function(key)
 		S_StartSound(nil,sfx_menu1,consoleplayer)
 		ML.stopTextInput()
 	end
-end)
+end
+
+if not ML.replacing
+	addHook("PreThinkFrame", do
+		ML.mainThinker()
+	end)
+	addHook("KeyDown", function(key)
+		local res = ML.keyhandlerThinker_KD(key)
+		if res ~= nil then return res end
+	end)
+	addHook("KeyUp", function(key)
+		local res = ML.keyhandlerThinker_KU(key)
+		if res ~= nil then return res end
+	end)
+	addHook("KeyDown", function(key)
+		local res = ML.controlHandler(key)
+		if res ~= nil then return res end
+	end)
+end
